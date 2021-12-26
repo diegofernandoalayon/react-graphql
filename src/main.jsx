@@ -10,7 +10,7 @@ const client = new ApolloClient({
     uri: 'http://localhost:4000'
   })
 })
-const query = gpl`
+const query = gql`
   query {
     allPersons {
       id
