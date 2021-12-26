@@ -9,6 +9,23 @@ const client = new ApolloClient({
     uri: 'http://localhost:4000'
   })
 })
+const query = gpl`
+  query {
+    allPersons {
+      id
+      name
+      phone
+      address {
+        street
+        city
+      }
+    }
+  }
+`
+client.query({query: query})
+  .then(res => {
+    console.log(res.data)
+  })
 ReactDOM.render(
   <React.StrictMode>
     <App />
