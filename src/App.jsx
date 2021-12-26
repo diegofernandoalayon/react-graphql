@@ -12,6 +12,10 @@ function App() {
     query {
       allPersons{
         name
+        phone
+        address{
+          street
+        }
       }
     }
     `})
