@@ -1,29 +1,24 @@
 
 import logo from './logo.svg'
 import './App.css'
-import { useEffect } from 'react'
+import {gql, useQuery} from '@apollo/client'
 
+const All_PERSONS = gql`
+  query {
+    allPersons {
+      id
+      name
+      phone
+      address {
+        street
+        city
+      }
+    }
+  }
+`
 function App() {
-//  useEffect(() => {
-//   fetch('http://localhost:4000',{
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json'},
-//     body: JSON.stringify({ query: `
-//     query {
-//       allPersons{
-//         name
-//         phone
-//         address{
-//           street
-//         }
-//       }
-//     }
-//     `})
-//   })
-//   .then(res => res.json())
-//   .then(data => console.log(data.data))
-//  })
-
+  const result = useQuery(All_PERSONS)
+  console.log(result)
   return (
     <div className="App">
       <header className="App-header">
