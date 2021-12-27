@@ -2,6 +2,7 @@
 import logo from './logo.svg'
 import './App.css'
 import {gql, useQuery} from '@apollo/client'
+import {Persons} from './components/Persons/index'
 
 const All_PERSONS = gql`
   query {
@@ -17,13 +18,19 @@ const All_PERSONS = gql`
   }
 `
 function App() {
-  const result = useQuery(All_PERSONS)
-  console.log(result)
+  const {data, error, loading} = useQuery(All_PERSONS)
+  console.log(data)
+  if(error) return <span style='color: red'>{error}</span>
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>GraphQL + React!</p>
+        {loading
+          ? <p>Loading...</p>
+          : <Persons persons={data.allPersons} />
+        
+        }
+        
       </header>
     </div>
   )
