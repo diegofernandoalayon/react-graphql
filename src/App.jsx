@@ -4,20 +4,8 @@ import './App.css'
 import {gql, useQuery} from '@apollo/client'
 import {Persons} from './components/Persons/index'
 import { PersonForm } from './components/PersonForm'
+import { All_PERSONS} from './graphql/queries'
 
-export const All_PERSONS = gql`
-  query {
-    allPersons {
-      id
-      name
-      phone
-      address {
-        street
-        city
-      }
-    }
-  }
-`
 function App() {
   const {data, error, loading} = useQuery(All_PERSONS)
   // console.log(data)
