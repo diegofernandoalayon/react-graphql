@@ -21,9 +21,9 @@ export const Persons = ({persons}) => {
   const [person, setPerson] = useState(null)
   
   const showPerson = name => {
-    console.log('hola')
+ 
     if(result.data !== null){
-      console.log('queso')
+    
       if(result.data?.findPerson?.name === name){
         setPerson(result.data.findPerson)
         return 0
