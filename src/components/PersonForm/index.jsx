@@ -1,7 +1,8 @@
-import { useMutation} from '@apollo/client'
+// import { useMutation} from '@apollo/client'
 import {useState} from 'react'
-import { All_PERSONS } from '../../persons/graphql-queries'
-import { CREATE_PERSON } from '../../persons/graphql-mutations'
+// import { All_PERSONS } from '../../persons/graphql-queries'
+// import { CREATE_PERSON } from '../../persons/graphql-mutations'
+import { useAddPerson } from '../../persons/custom-hooks'
 
 
 export const PersonForm = () => {
@@ -10,9 +11,7 @@ export const PersonForm = () => {
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
 
-  const [ createPerson ] = useMutation(CREATE_PERSON, {
-    refetchQueries: [{ query: All_PERSONS}]
-  })
+  const [createPerson] = useAddPerson()
 
   const handleSubmit = event => {
     event.preventDefault()
