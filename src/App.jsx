@@ -19,7 +19,7 @@ const All_PERSONS = gql`
 `
 function App() {
   const {data, error, loading} = useQuery(All_PERSONS)
-  console.log(data)
+  // console.log(data)
   if(error) return <span style='color: red'>{error}</span>
   return (
     <div className="App">
