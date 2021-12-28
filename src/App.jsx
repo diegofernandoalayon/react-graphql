@@ -1,13 +1,11 @@
 
 import logo from './logo.svg'
 import './App.css'
-import {gql, useQuery} from '@apollo/client'
 import {Persons} from './components/Persons/index'
 import { PersonForm } from './components/PersonForm'
-import { All_PERSONS} from './graphql/queries'
-
+import {usePersons} from './persons/custom-hooks'
 function App() {
-  const {data, error, loading} = useQuery(All_PERSONS)
+  const {data, error, loading} = usePersons()
   // console.log(data)
   if(error) return <span style='color: red'>{error}</span>
   return (
