@@ -3,6 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 import {gql, useQuery} from '@apollo/client'
 import {Persons} from './components/Persons/index'
+import { PersonForm } from './components/PersonForm'
 
 const All_PERSONS = gql`
   query {
@@ -25,6 +26,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <PersonForm />
         {loading
           ? <p>Loading...</p>
           : <Persons persons={data.allPersons} />
