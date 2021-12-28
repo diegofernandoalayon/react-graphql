@@ -1,5 +1,6 @@
 import {gql, useMutation} from '@apollo/client'
 import {useState} from 'react'
+import { All_PERSONS } from '../../App'
 
 const CREATE_PERSON = gql`
 
@@ -27,7 +28,9 @@ export const PersonForm = () => {
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
 
-  const [ createPerson ] = useMutation(CREATE_PERSON)
+  const [ createPerson ] = useMutation(CREATE_PERSON, {
+    refetchQueries: [{ query: All_PERSONS}]
+  })
 
   const handleSubmit = event => {
     event.preventDefault()

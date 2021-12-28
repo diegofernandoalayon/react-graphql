@@ -5,7 +5,7 @@ import {gql, useQuery} from '@apollo/client'
 import {Persons} from './components/Persons/index'
 import { PersonForm } from './components/PersonForm'
 
-const All_PERSONS = gql`
+export const All_PERSONS = gql`
   query {
     allPersons {
       id
@@ -19,7 +19,7 @@ const All_PERSONS = gql`
   }
 `
 function App() {
-  const {data, error, loading} = useQuery(All_PERSONS, {pollInterval: 2000})
+  const {data, error, loading} = useQuery(All_PERSONS)
   // console.log(data)
   if(error) return <span style='color: red'>{error}</span>
   return (
