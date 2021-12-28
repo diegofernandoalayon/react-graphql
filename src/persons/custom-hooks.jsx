@@ -6,9 +6,13 @@ export const usePersons = () => {
   return result
 }
 
-export const useAddPerson = () => {
+export const useAddPerson = ({notifyError}) => {
   const [ createPerson ] = useMutation(CREATE_PERSON, {
-    refetchQueries: [{ query: All_PERSONS}]
+    refetchQueries: [{ query: All_PERSONS}],
+    onError: (error) =>{
+      notifyError(error.graphQLErrors[0].message)
+
+    }
   })
   return [createPerson]
 }
