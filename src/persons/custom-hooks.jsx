@@ -1,18 +1,17 @@
-import { useQuery, useMutation, useLazyQuery} from '@apollo/client'
-import { All_PERSONS, FIND_PERSON } from './graphql-queries'
-import { CREATE_PERSON } from './graphql-mutations'
-import { EDIT_NUMBER } from './graphql-mutations'
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { ALL_PERSONS, FIND_PERSON } from './graphql-queries'
+import { CREATE_PERSON, EDIT_NUMBER } from './graphql-mutations'
+
 export const usePersons = () => {
-  const result = useQuery(All_PERSONS)
+  const result = useQuery(ALL_PERSONS)
   return result
 }
 
-export const useAddPerson = ({notifyError}) => {
-  const [ createPerson ] = useMutation(CREATE_PERSON, {
-    refetchQueries: [{ query: All_PERSONS}],
-    onError: (error) =>{
+export const useAddPerson = ({ notifyError }) => {
+  const [createPerson] = useMutation(CREATE_PERSON, {
+    refetchQueries: [{ query: ALL_PERSONS }],
+    onError: (error) => {
       notifyError(error.graphQLErrors[0].message)
-
     }
   })
   return [createPerson]

@@ -1,5 +1,5 @@
-import {gql} from '@apollo/client'
-export const All_PERSONS = gql`
+import { gql } from '@apollo/client'
+export const ALL_PERSONS = gql`
   query {
     allPersons {
       id

@@ -1,8 +1,6 @@
 
-
-import {useState} from 'react'
+import { useState } from 'react'
 import { useEditNumber } from '../../persons/custom-hooks'
-
 
 export const PhoneForm = () => {
   const [name, setName] = useState('')
@@ -13,16 +11,15 @@ export const PhoneForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    editNumber({variables: {name, phone}})
+    editNumber({ variables: { name, phone } })
     setName('')
     setPhone('')
-
   }
 
   return (
     <div>
       <h2>Edit phone number</h2>
-      <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column'}}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <input placeholder='name' value={name} onChange={event => setName(event.target.value)} />
         <input placeholder='phone' value={phone} onChange={event => setPhone(event.target.value)} />
 
@@ -30,5 +27,4 @@ export const PhoneForm = () => {
       </form>
     </div>
   )
-
 }

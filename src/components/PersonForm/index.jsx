@@ -1,19 +1,18 @@
 
-import {useState} from 'react'
+import { useState } from 'react'
 import { useAddPerson } from '../../persons/custom-hooks'
 
-
-export const PersonForm = ({notifyError}) => {
+export const PersonForm = ({ notifyError }) => {
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
 
-  const [createPerson] = useAddPerson({notifyError})
+  const [createPerson] = useAddPerson({ notifyError })
 
   const handleSubmit = event => {
     event.preventDefault()
-    createPerson({variables: {name, phone, street, city}})
+    createPerson({ variables: { name, phone, street, city } })
     setName('')
     setPhone('')
     setStreet('')
@@ -23,7 +22,7 @@ export const PersonForm = ({notifyError}) => {
   return (
     <div>
       <h2>Create new person</h2>
-      <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column'}}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <input placeholder='name' value={name} onChange={event => setName(event.target.value)} />
         <input placeholder='phone' value={phone} onChange={event => setPhone(event.target.value)} />
         <input placeholder='street' value={street} onChange={event => setStreet(event.target.value)} />
@@ -32,5 +31,4 @@ export const PersonForm = ({notifyError}) => {
       </form>
     </div>
   )
-
 }
