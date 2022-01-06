@@ -9,9 +9,22 @@ export const usePersons = () => {
 
 export const useAddPerson = ({ notifyError }) => {
   const [createPerson] = useMutation(CREATE_PERSON, {
-    refetchQueries: [{ query: ALL_PERSONS }],
+    // refetchQueries: [{ query: ALL_PERSONS }],
     onError: (error) => {
       notifyError(error.graphQLErrors[0].message)
+    },
+    update: (store, response) => {
+      const dataInStore = store.readQuery({ query: ALL_PERSONS })
+      store.writeQuery({
+        query: ALL_PERSONS,
+        data: {
+          ...dataInStore,
+          allPersons: [
+            ...dataInStore.allPersons,
+            response.data.addPerson
+          ]
+        }
+      })
     }
   })
   return [createPerson]

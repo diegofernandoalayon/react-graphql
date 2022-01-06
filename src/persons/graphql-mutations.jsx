@@ -14,6 +14,7 @@ export const CREATE_PERSON = gql`
         city
         street
       }
+      id
     }
   }
 `
