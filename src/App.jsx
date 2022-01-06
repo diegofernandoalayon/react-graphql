@@ -6,10 +6,11 @@ import { PersonForm } from './components/PersonForm'
 import { usePersons } from './persons/custom-hooks'
 import { Notify } from './components/Notify'
 import { PhoneForm } from './components/PhoneForm'
+import { LoginForm } from './components/LoginForm'
 function App () {
   const { data, error, loading } = usePersons()
   const [errorMessage, setErrorMessage] = useState(null)
-  // console.log(data)
+  const [token, setToken] = useState(null)
   if (error) return <span style='color: red'>{error}</span>
   const notifyError = message => {
     setErrorMessage(message)
@@ -21,6 +22,7 @@ function App () {
       <header className='App-header'>
         <img src={logo} className='App-logo' alt='logo' />
         <PersonForm notifyError={notifyError} />
+        <LoginForm notifyError={notifyError} setToken={setToken} />
         <PhoneForm />
         {/* <PhoneForm /> */}
         {loading
