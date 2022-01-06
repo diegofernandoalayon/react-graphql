@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
 import { ALL_PERSONS, FIND_PERSON } from './graphql-queries'
-import { CREATE_PERSON, EDIT_NUMBER } from './graphql-mutations'
+import { CREATE_PERSON, EDIT_NUMBER, LOGIN } from './graphql-mutations'
 
 export const usePersons = () => {
   const result = useQuery(ALL_PERSONS)
@@ -25,4 +25,13 @@ export const useOnePerson = () => {
 export const useEditNumber = () => {
   const [editNumber] = useMutation(EDIT_NUMBER)
   return [editNumber]
+}
+
+export const useLogin = ({ notifyError }) => {
+  const [login, result] = useMutation(LOGIN, {
+    onError: (error) => {
+      notifyError(error.graphQLErrors[0].message)
+    }
+  })
+  return [login, result]
 }
